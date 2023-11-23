@@ -1,0 +1,28 @@
+﻿apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mssql-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mymssql
+  template:
+    metadata:
+      labels:
+        app: mymssql
+    spec:
+      terminationGracePeriodSeconds: 30
+      hostname: mssqlinst
+      containers:
+        - name: mymssql
+          image: mssql-server-image
+          ports:
+            - containerPort: 1433
+          env:
+          - name: MSSQL_PID
+            value: "Developer"
+          - name: ACCEPT_EULA
+            value: "Y"
+          - name: MSSQL_SA_PASSWORD
+            value: YourPassword!

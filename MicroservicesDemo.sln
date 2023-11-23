@@ -1,0 +1,59 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34221.43
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{DD9B69D5-2D11-4789-901A-04E0463FBD89}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{416195BF-568D-4E75-99DD-31F00E05649A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlatformService.API", "src\PlatformService.API\PlatformService.API.csproj", "{991D472D-20C5-4653-B889-6053470BDFD6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "K8S", "K8S", "{59533A87-506B-41D5-8864-C2CB33DF5544}"
+	ProjectSection(SolutionItems) = preProject
+		src\PlatformService.API\.dockerignore = src\PlatformService.API\.dockerignore
+		commands-depl.yaml = commands-depl.yaml
+		ingress-srv.yaml = ingress-srv.yaml
+		local-pvc.yaml = local-pvc.yaml
+		mssql-plat-depl-new.yaml = mssql-plat-depl-new.yaml
+		mssql-plat-depl.yaml = mssql-plat-depl.yaml
+		platforms-depl.yaml = platforms-depl.yaml
+		platforms-np-srv.yaml = platforms-np-srv.yaml
+		rabbitmq-depl.yaml = rabbitmq-depl.yaml
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommandService.API", "src\CommandService.API\CommandService.API.csproj", "{49A6D516-D0C0-4FD2-94CE-A1A2CF714A0D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DemoWebApi", "src\DemoWebApi\DemoWebApi.csproj", "{244CF9F4-E4DF-45DC-AF8F-96996890AE2C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{991D472D-20C5-4653-B889-6053470BDFD6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{991D472D-20C5-4653-B889-6053470BDFD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{991D472D-20C5-4653-B889-6053470BDFD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{991D472D-20C5-4653-B889-6053470BDFD6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49A6D516-D0C0-4FD2-94CE-A1A2CF714A0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49A6D516-D0C0-4FD2-94CE-A1A2CF714A0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49A6D516-D0C0-4FD2-94CE-A1A2CF714A0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49A6D516-D0C0-4FD2-94CE-A1A2CF714A0D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{244CF9F4-E4DF-45DC-AF8F-96996890AE2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{244CF9F4-E4DF-45DC-AF8F-96996890AE2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{244CF9F4-E4DF-45DC-AF8F-96996890AE2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{244CF9F4-E4DF-45DC-AF8F-96996890AE2C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{991D472D-20C5-4653-B889-6053470BDFD6} = {DD9B69D5-2D11-4789-901A-04E0463FBD89}
+		{59533A87-506B-41D5-8864-C2CB33DF5544} = {DD9B69D5-2D11-4789-901A-04E0463FBD89}
+		{49A6D516-D0C0-4FD2-94CE-A1A2CF714A0D} = {DD9B69D5-2D11-4789-901A-04E0463FBD89}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D123432F-F20C-4493-A91E-10AF796C4EB4}
+	EndGlobalSection
+EndGlobal
