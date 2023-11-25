@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using PlatformService.API.AsyncDataServices;
 using PlatformService.API.Data;
+using PlatformService.API.SyncDataServices.Gprc;
 using PlatformService.API.SyncDataServices.Http;
 
 namespace PlatformService.API
@@ -39,6 +40,7 @@ namespace PlatformService.API
             builder.Services.AddHttpClient<ICommandDataClient,CommandDataClient>();
             builder.Services.AddSingleton<IMessageBusClient, MessageBusClient>();
             builder.Services.AddControllers();
+            builder.Services.AddGrpc();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
@@ -47,6 +49,7 @@ namespace PlatformService.API
             var app = builder.Build();
             app.UseSwagger();
             app.UseSwaggerUI();
+            app.MapGrpcService<GrpcPlatformService>();
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
@@ -66,11 +69,23 @@ namespace PlatformService.API
             }
             Console.WriteLine($"--> CommandService Endpoint {endpoint}");
             PrepDb.PrepPopulation(app, true);
-
+            app.MapGet("/protos/platforms.proto", async context =>
+               {
+                   await context.Response.WriteAsync(File.ReadAllText("Protos/platforms.proto"));
+               });
             //app.UseHttpsRedirection();
 
             app.UseAuthorization();
+            //app.UseEndpoints(endpoints =>
+            //{
+            //    endpoints.MapControllers();
+            //    endpoints.MapGrpcService<GrpcPlatformService>();
 
+            //    endpoints.MapGet("/protos/platforms.proto", async context =>
+            //    {
+            //        await context.Response.WriteAsync(File.ReadAllText("Protos/platforms.proto"));
+            //    });
+            //});
 
             app.MapControllers();
 

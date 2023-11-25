@@ -2,6 +2,7 @@
 using CommandService.API.AsyncDataServices;
 using CommandService.API.Data;
 using CommandService.API.EvenetProcessing;
+using CommandService.API.SyncDataServices.Grpc;
 using Microsoft.EntityFrameworkCore;
 
 namespace CommandService.API
@@ -16,9 +17,11 @@ namespace CommandService.API
             builder.Services.AddDbContext<AppDbContext>(options => options.UseInMemoryDatabase("InMem"));
             builder.Services.AddScoped<ICommandRepo, CommandRepo>();
             builder.Services.AddControllers();
-          //  builder.Services.AddHostedService<SampleBackgroundService>();
+             //builder.Services.AddHostedService<SampleBackgroundService>();
             builder.Services.AddHostedService<MessageBusSubscriber>();
             builder.Services.AddSingleton<IEventProcessor,EventProcessor>();
+            builder.Services.AddScoped<IPlatformDataClient, PlatformDataClient>();
+            //builder.Services.AddGrpc();
             builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
@@ -39,7 +42,7 @@ namespace CommandService.API
 
 
             app.MapControllers();
-
+            PrepDb.PrepPopulation(app);
             app.Run();
         }
     }
